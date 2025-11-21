@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Building2, Link, Users, UserCog, Mail, Lock, Phone } from 'lucide-react';
+import signup from '../api/auth/signup';
 
 // Reusable Input Field Component
 const InputField = ({ label, name, value, onChange, type = 'text', placeholder, icon: Icon, required = false, isError = false }) => (
@@ -125,7 +126,7 @@ const Registration = () => {
   };
 
   // Final submission logic
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateStep()) {
       setMessage('Please fill out all required fields correctly.');
@@ -135,13 +136,12 @@ const Registration = () => {
     setLoading(true);
     setMessage('');
 
-    // --- Mock Registration Logic ---
-    setTimeout(() => {
-      setLoading(false);
-      setMessage(`Registration successful for ${formData.schoolName}! School profile created.`);
-      console.log('Final Form Data:', formData);
-      // In a real app, you would send formData to your API here.
-    }, 2000);
+    console.log(formData)
+
+    const result = await signup(formData)
+
+    setLoading(false);
+    setMessage(`Registration successful for ${formData.schoolName}! School profile created.`);
   };
 
   // --- Step Components ---

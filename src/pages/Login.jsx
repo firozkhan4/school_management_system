@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, BookOpen } from 'lucide-react';
 import login from '../api/auth/login.js'
+import { useAppContext } from '../context/AppContext.jsx';
 
 const Login = () => {
   // State for form inputs
@@ -8,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const { user, setUser } = useAppContext()
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -18,8 +20,8 @@ const Login = () => {
     try {
 
       const userData = await login(email, password);
+      setUser(userData.data.user)
       setLoading(false)
-      console.log(userData);
 
     } catch (error) {
       setMessage('Invalid credentials. Please check your email and password.');

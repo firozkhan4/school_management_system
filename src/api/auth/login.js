@@ -38,8 +38,8 @@ async function login(email, password) {
 
     // Typically, you'd get a token or user data back
     // You might want to store the token in localStorage or context
-    if (data.token) {
-      localStorage.setItem('authToken', data.token);
+    if (data.success && data.data.token) {
+      localStorage.setItem('token', data.data.token);
     }
 
     return data;

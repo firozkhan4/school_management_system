@@ -3,11 +3,13 @@ import Login from './pages/Login'
 import Registration from './pages/Registration'
 import Layout from './pages/Layout.jsx'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home.jsx'
 import Attendance from './pages/Attendance.jsx'
 import ClassAndSection from './pages/ClassAndSection.jsx'
 import Admission from './pages/AdmissionForm.jsx'
 import { useAuthContext } from './context/AuthContext.jsx'
 import NotFound from './pages/NotFound.jsx'
+import LoadingSpinner from './components/LoadingSpinner.jsx'
 
 
 const PrivateRoute = ({ children }) => {
@@ -15,13 +17,24 @@ const PrivateRoute = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-      </div>
+      <LoadingSpinner />
     );
   }
 
   return isLoggedIn ? <>{children}</> : <Navigate to="/login" replace />
+}
+
+const AuthRoute = ({ children }) => {
+  const { isLoggedIn, isLoading } = useAuthContext()
+
+  if (isLoading) {
+    return (
+      <LoadingSpinner />
+    );
+  }
+
+
+  return isLoggedIn ? <Navigate to="/app/dashboard" replace /> : <>{children}</>;
 }
 
 
@@ -30,26 +43,25 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* Layout as parent route with nested routes */}
+          {/* Public routes */}
+          <Route path='/' element={<Home />} />
 
-          <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-            <Route index element={<Navigate to="/dashboard" replace />} />
+          <Route path='/login' element={<AuthRoute><Login /></AuthRoute>} />
+          <Route path='/signup' element={<AuthRoute><Registration /></AuthRoute>} />
+
+          {/* Protected routes with layout */}
+          <Route path='/app' element={<PrivateRoute><Layout /></PrivateRoute>}>
+            <Route index element={<Navigate to="/app/dashboard" replace />} />
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='attendance' element={<Attendance />} />
             <Route path='classes' element={<ClassAndSection />} />
             <Route path='admission' element={<Admission />} />
           </Route>
 
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Registration />} />
-
           {/* Optional: Catch-all route for 404 pages */}
           <Route path='*' element={<NotFound />} />
-
         </Routes>
-
-      </BrowserRouter>
-    </>
+      </BrowserRouter>   </>
   )
 }
 
