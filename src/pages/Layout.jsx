@@ -53,7 +53,7 @@ const Layout = () => {
           <div className="flex items-center space-x-3">
             <span className="text-sm font-medium text-gray-600 hidden sm:block">Admin User</span>
             <Avatar
-              alt={user.firstName || "User"}
+              alt=""
               src="/static/images/avatar/1.jpg"
               sx={{ width: 45, height: 45 }}
             />

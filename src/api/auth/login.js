@@ -36,8 +36,6 @@ async function login(email, password) {
 
     const data = await response.json();
 
-    // Typically, you'd get a token or user data back
-    // You might want to store the token in localStorage or context
     if (data.success && data.data.token) {
       localStorage.setItem('token', data.data.token);
     }
@@ -57,12 +55,3 @@ async function login(email, password) {
 
 export default login
 
-// Example usage:
-/*
-try {
-  const userData = await login('user@example.com', 'password123');
-  console.log('Login successful:', userData);
-} catch (error) {
-  console.error('Login failed:', error.message);
-}
-*/

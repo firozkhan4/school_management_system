@@ -6,10 +6,13 @@ import Dashboard from './pages/Dashboard'
 import Home from './pages/Home.jsx'
 import Attendance from './pages/Attendance.jsx'
 import ClassAndSection from './pages/ClassAndSection.jsx'
-import Admission from './pages/AdmissionForm.jsx'
+import AdmissionForm from './pages/AdmissionForm.jsx'
 import { useAuthContext } from './context/AuthContext.jsx'
 import NotFound from './pages/NotFound.jsx'
 import LoadingSpinner from './components/LoadingSpinner.jsx'
+import Admission from './pages/Admission.jsx'
+import StudentManagement from './pages/StudentManagement.jsx'
+import TeacherManagement from './pages/TeacherManagement.jsx'
 
 
 const PrivateRoute = ({ children }) => {
@@ -32,13 +35,16 @@ const AuthRoute = ({ children }) => {
       <LoadingSpinner />
     );
   }
+  if (isLoggedIn) {
+    return <Navigate to="/app/dashboard" replace />;
+  }
 
-
-  return isLoggedIn ? <Navigate to="/app/dashboard" replace /> : <>{children}</>;
+  return children;
 }
 
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
@@ -55,7 +61,9 @@ function App() {
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='attendance' element={<Attendance />} />
             <Route path='classes' element={<ClassAndSection />} />
-            <Route path='admission' element={<Admission />} />
+            <Route path='admission' element={<AdmissionForm />} />
+            <Route path='students' element={<StudentManagement />} />
+            <Route path='teachers' element={<TeacherManagement />} />
           </Route>
 
           {/* Optional: Catch-all route for 404 pages */}

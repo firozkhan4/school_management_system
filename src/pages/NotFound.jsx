@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 import { Frown, Home, ZapOff } from 'lucide-react';
 
 const NotFound = () => {
@@ -25,14 +26,14 @@ const NotFound = () => {
 
         {/* Call to Action (Single Button) */}
         <div className="flex justify-center">
-          <a
-            href="/"
+          <Link
+            to="/app"
             className="w-full sm:w-auto flex items-center justify-center px-8 py-3 bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-800 transition transform hover:scale-[1.03] duration-200"
             title="Go back to the application homepage"
           >
             <Home className="w-5 h-5 mr-2" />
             Back to Homepage
-          </a>
+          </Link>
         </div>
 
         {/* Footer Note */}

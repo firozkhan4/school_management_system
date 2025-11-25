@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Mail, Calendar, Home, Users, BookOpen, Clock, AlertTriangle, CheckCircle, X } from 'lucide-react';
 
-// --- Utility: Mock UUID and Date for Submission ---
-const generateUUID = () => crypto.randomUUID();
 const getCurrentDate = () => new Date().toISOString().split('T')[0];
 const getMaxDate = () => getCurrentDate();
 const getCurrentYear = () => new Date().getFullYear();
@@ -32,8 +30,6 @@ const initialFormData = {
   remarks: '',
 
   // Mocked Foreign Keys / System Values (for payload generation)
-  schoolId: generateUUID(),
-  userId: generateUUID(),
   applicationNumber: 'ADM-PENDING', // Will be replaced on submit
 };
 

@@ -23,10 +23,8 @@ export const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [message, setMessage] = useState(''); // Global Message/Success
   const [currentPage, setCurrentPage] = useState('dashboard');
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const token = localStorage.getItem("token");
-    return !!token;
-  })
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   // Values to be shared
   const value = {

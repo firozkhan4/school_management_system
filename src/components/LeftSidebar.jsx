@@ -1,6 +1,7 @@
 import { useAppContext } from "../context/AppContext";
 import { Users, UserSquare, Clock, BookOpen, Trello, X, Settings, LogOut, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router'
+import LogoutButton from "./ui/LogoutButton";
 
 
 
@@ -77,10 +78,11 @@ const LeftSidebar = () => {
             <Settings size={20} />
             <span>Settings</span>
           </button>
-          <button className="w-full flex items-center space-x-3 px-4 py-2 rounded-lg text-red-300 hover:bg-red-700 hover:text-white transition">
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
+          <LogoutButton />
+          {/* <button className="w-full flex items-center space-x-3 px-4 py-2 rounded-lg text-red-300 hover:bg-red-700 hover:text-white transition"> */}
+          {/*   <LogOut size={20} /> */}
+          {/*   <span>Logout</span> */}
+          {/* </button> */}
         </div>
       </div>
     </>

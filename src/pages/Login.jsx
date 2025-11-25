@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Lock, BookOpen } from 'lucide-react';
 import login from '../api/auth/login.js'
 import { useAppContext } from '../context/AppContext.jsx';
+import { useNavigate } from 'react-router';
+
 
 const Login = () => {
   // State for form inputs
@@ -11,17 +13,20 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const { user, setUser } = useAppContext()
 
+  const navigate = useNavigate()
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
 
+
     try {
 
       const userData = await login(email, password);
       setUser(userData.data.user)
       setLoading(false)
+      navigate("/app", { replace: true })
 
     } catch (error) {
       setMessage('Invalid credentials. Please check your email and password.');
