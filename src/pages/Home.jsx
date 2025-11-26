@@ -163,18 +163,23 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <LayoutDashboard className="w-6 h-6 text-blue-600" />
-            <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">
+            <Link to="/" className="text-2xl font-extrabold text-gray-900 tracking-tight">
               School Hub
-            </h1>
+            </Link>
           </div>
           <nav className="hidden md:flex space-x-6 text-gray-600">
             <a href="#features" className="hover:text-blue-600 transition duration-150">Features</a>
             <a href="#demo" className="hover:text-blue-600 transition duration-150">AI Assistant</a>
             <a href="#contact" className="hover:text-blue-600 transition duration-150">Contact</a>
           </nav>
-          <Link to={"/login"} className="hidden md:block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition duration-200">
-            Login
-          </Link>
+          <div className='grid grid-cols-2 space-x-2'>
+            <Link to={"/login"} className="hidden md:block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition duration-200">
+              Login
+            </Link>
+            <Link to={"/signup"} className="hidden md:block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition duration-200">
+              Signup
+            </Link>
+          </div>
         </div>
       </header>
 
