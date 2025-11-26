@@ -4,7 +4,7 @@ const BASE_URL = `${import.meta.env.VITE_SERVER_URL}/teacher`;
 export const getAllTeachers = async () => {
   const res = await fetch(BASE_URL);
   const data = await res.json();
-  return data.data?.data; // same pattern as your class API
+  return data.data
 };
 
 // GET teacher by ID
@@ -20,7 +20,13 @@ export const createTeacher = async (data) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const response = await res.json();
+  if (response.success) {
+    console.log(response)
+    return response;
+  }
+
+  return ""
 };
 
 // UPDATE teacher
